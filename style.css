@@ -3,6 +3,9 @@
     grid-template-columns: repeat(3, auto);
     width: 306px;
     margin: 50px auto;
+    justify-content: center;
+    font-size: 50px;
+
 }
 
 .cells {
@@ -14,5 +17,16 @@
 }
 
 body {
+    font-family: sans-serif;
     text-align: center;
+    margin: 0 auto;
+    text-align: center;
+}
+
+#gameContainer {
+    margin: 50px;
+}
+
+#winCounter, #updateMessage, #resetButton {
+    font-size: 30px;
 }
