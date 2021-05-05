@@ -1,0 +1,18 @@
+.gameGrid {
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    width: 306px;
+    margin: 50px auto;
+}
+
+.cells {
+    width: 150px;
+    height: 150px;
+    border: 1px solid black;
+    
+    line-height: 150px;
+}
+
+body {
+    text-align: center;
+}
