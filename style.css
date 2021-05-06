@@ -21,12 +21,17 @@ body {
     text-align: center;
     margin: 0 auto;
     text-align: center;
+    align-items: center;
 }
 
 #gameContainer {
     margin: 50px;
 }
 
-#winCounter, #updateMessage, #resetButton {
+#winCounter, #resetButton, #randomTurnButton {
     font-size: 30px;
+}
+
+#updateMessage {
+    font-size: 40px;
 }

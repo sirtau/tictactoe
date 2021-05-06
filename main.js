@@ -5,17 +5,19 @@ let moveCounter = 0
 let xWins = 0
 let oWins = 0
 
+
+
 const winCounter = document.querySelector('#winCounter')
 winCounter.innerText = "X Wins: " + xWins + "\nO Wins: " + oWins
 
 const updateMessage = document.querySelector('#updateMessage')
 updateMessage.innerText = "Welcome! X goes first."
 
-
-
 const resetButton = document.querySelector('#resetButton')
 resetButton.addEventListener('click', resetGrid)
 
+const randomTurnButton = document.querySelector('#randomTurnButton')
+randomTurnButton.addEventListener('click', randomButton)
 
 
 const cell0 = document.querySelector('#c0')
@@ -48,11 +50,11 @@ function turnExecute(event) {
 function alternatePlayer() {
     if (currentPlayer == 'X') {
         currentPlayer = 'O'
-        updateMessage.innerText = "It's O's Turn."
+        updateMessage.innerText = "O's Turn."
         //        console.log(currentPlayer)
     } else {
         currentPlayer = 'X'
-        updateMessage.innerText = "It's X's Turn."
+        updateMessage.innerText = "X's Turn."
         //        console.log(currentPlayer)
     }
 }
@@ -122,6 +124,41 @@ function resetGrid() {
     moveCounter = 0
     console.log('**RESTART GAME**')
     updateMessage.innerText = "New game started! X goes first."
+}
+
+
+function randomButton() {
+    moveCounter++
+    randomMove()
+
+}
+
+
+
+function randomMove() {
+
+    let moveArray = [0, 1, 2, 3, 4, 5, 6, 7, 8]
+
+
+    let cpuRandomMove = Math.floor(Math.random() * moveArray.length)
+    if (cells[cpuRandomMove].innerText === '' && currentPlayer == "O" && gameInProgress == true) {
+        cells[cpuRandomMove].innerText = "O"
+
+        winCheck()
+
+
+
+    } else if (cells[cpuRandomMove].innerText === '' && currentPlayer == "X" && gameInProgress == true) {
+        cells[cpuRandomMove].innerText = "X"
+
+
+        winCheck()
+    } else if (gameInProgress) {
+        moveArray.splice(cpuRandomMove, 1)
+        randomMove()
+    }
+
+
 }
 
 
