@@ -5,7 +5,7 @@ let moveCounter = 0
 let xWins = 0
 let oWins = 0
 
-moveArrayInitialize()
+
 
 const winCounter = document.querySelector('#winCounter')
 winCounter.innerText = "X Wins: " + xWins + "\nO Wins: " + oWins
@@ -39,9 +39,6 @@ for (i = 0; i < cells.length; i++) {
 function turnExecute(event) {
     if (gameInProgress == true && event.target.innerText == '') {
         playerInput(event.target)
-        var currentMove = Array.from(cells).indexOf(event.target)
-        moveArray[currentMove] = currentPlayer
-        console.log(moveArray)
         winCheck()
         //        console.log(event.target.innerText)
 
@@ -62,68 +59,39 @@ function alternatePlayer() {
     }
 }
 
-
 function winCheck() {
 
     if (gameInProgress == false) {
 
-    } else if ('' != moveArray[0] && moveArray[0] == moveArray[1] && moveArray[1] == moveArray[2]) {
-        cell0.style.background = 'lightgreen'
-        cell1.style.background = 'lightgreen'
-        cell2.style.background = 'lightgreen'
+    } else if ('' != cell0.innerText && cell0.innerText == cell1.innerText && cell1.innerText == cell2.innerText) {
         winCountUp()
-    } else if ('' != moveArray[3] && moveArray[3] == moveArray[4] && moveArray[4] == moveArray[5]) {
-        cell3.style.background = 'lightgreen'
-        cell4.style.background = 'lightgreen'
-        cell5.style.background = 'lightgreen'
+    } else if ('' != cell3.innerText && cell3.innerText == cell4.innerText && cell4.innerText == cell5.innerText) {
         winCountUp()
-    } else if ('' != moveArray[6] && moveArray[6] == moveArray[7] && moveArray[7] == moveArray[8]) {
-        cell6.style.background = 'lightgreen'
-        cell7.style.background = 'lightgreen'
-        cell8.style.background = 'lightgreen'
+    } else if ('' != cell6.innerText && cell6.innerText == cell7.innerText && cell7.innerText == cell8.innerText) {
         winCountUp()
-    } else if ('' != moveArray[0] && moveArray[0] == moveArray[3] && moveArray[3] == moveArray[6]) {
-        cell0.style.background = 'lightgreen'
-        cell3.style.background = 'lightgreen'
-        cell6.style.background = 'lightgreen'
+    } else if ('' != cell0.innerText && cell0.innerText == cell3.innerText && cell3.innerText == cell6.innerText) {
         winCountUp()
-    } else if ('' != moveArray[1] && moveArray[1] == moveArray[4] && moveArray[4] == moveArray[7]) {
-        cell1.style.background = 'lightgreen'
-        cell4.style.background = 'lightgreen'
-        cell7.style.background = 'lightgreen'
+    } else if ('' != cell1.innerText && cell1.innerText == cell4.innerText && cell4.innerText == cell7.innerText) {
         winCountUp()
-    } else if ('' != moveArray[2] && moveArray[2] == moveArray[5] && moveArray[5] == moveArray[8]) {
-        cell2.style.background = 'lightgreen'
-        cell5.style.background = 'lightgreen'
-        cell8.style.background = 'lightgreen'
+    } else if ('' != cell2.innerText && cell2.innerText == cell5.innerText && cell5.innerText == cell8.innerText) {
         winCountUp()
-    } else if ('' != moveArray[0] && moveArray[0] == moveArray[4] && moveArray[4] == moveArray[8]) {
-        cell0.style.background = 'lightgreen'
-        cell4.style.background = 'lightgreen'
-        cell8.style.background = 'lightgreen'
+    } else if ('' != cell0.innerText && cell0.innerText == cell4.innerText && cell4.innerText == cell8.innerText) {
         winCountUp()
-    } else if ('' != moveArray[2] && moveArray[2] == moveArray[4] && moveArray[4] == moveArray[6]) {
-        cell2.style.background = 'lightgreen'
-        cell4.style.background = 'lightgreen'
-        cell6.style.background = 'lightgreen'
+    } else if ('' != cell2.innerText && cell2.innerText == cell4.innerText && cell4.innerText == cell6.innerText) {
         winCountUp()
     } else if (moveCounter == 9) {
         updateMessage.innerText = "DRAW! Click reset to try again."
         gameInProgress = false
-        for (i = 0; i < cells.length; i++) {
-            cells[i].style.background = 'rgb(255, 181, 181)'
-        }
     } else alternatePlayer()
 }
 
 function playerInput(cells) {
     if (gameInProgress == true && cells.innerText == '') {
         cells.innerText = currentPlayer
-
-        console.log("PlayerInput " + moveArray)
         moveCounter++
+        console.log(moveCounter)
     }
-
+    //    console.log(currentPlayer)
 }
 
 
@@ -142,12 +110,15 @@ function winCountUp() {
 }
 
 function resetGrid() {
-    for (i = 0; i < cells.length; i++) {
-        cells[i].style.background = ''
-        cells[i].innerText = ''
-    }
-    
-    moveArrayInitialize()
+    cell0.innerText = ''
+    cell1.innerText = ''
+    cell2.innerText = ''
+    cell3.innerText = ''
+    cell4.innerText = ''
+    cell5.innerText = ''
+    cell6.innerText = ''
+    cell7.innerText = ''
+    cell8.innerText = ''
     currentPlayer = 'X'
     gameInProgress = true
     moveCounter = 0
@@ -166,32 +137,28 @@ function randomButton() {
 
 function randomMove() {
 
+    let moveArray = [0, 1, 2, 3, 4, 5, 6, 7, 8]
 
 
-
-    let cpuRandomMove = Math.floor(Math.random() * 9)
-    
-    if (moveArray[cpuRandomMove] == '' && currentPlayer == "O" && gameInProgress == true) {
+    let cpuRandomMove = Math.floor(Math.random() * moveArray.length)
+    if (cells[cpuRandomMove].innerText === '' && currentPlayer == "O" && gameInProgress == true) {
         cells[cpuRandomMove].innerText = "O"
-        moveArray[cpuRandomMove] == 'O'
+
         winCheck()
 
 
 
-    } else if (moveArray[cpuRandomMove] == '' && currentPlayer == "X" && gameInProgress == true) {
+    } else if (cells[cpuRandomMove].innerText === '' && currentPlayer == "X" && gameInProgress == true) {
         cells[cpuRandomMove].innerText = "X"
-        moveArray[cpuRandomMove] == 'X'
+
 
         winCheck()
     } else if (gameInProgress) {
-
+        moveArray.splice(cpuRandomMove, 1)
         randomMove()
     }
 
 
 }
 
-function moveArrayInitialize() {
-    moveArray = ['', '', '', '', '', '', '', '', '']
-}
 
