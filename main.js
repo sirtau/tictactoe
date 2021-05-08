@@ -4,8 +4,7 @@ console.log(currentPlayer)
 let moveCounter = 0
 let xWins = 0
 let oWins = 0
-
-moveArrayInitialize()
+let moveArray = ['', '', '', '', '', '', '', '', '']
 
 const winCounter = document.querySelector('#winCounter')
 winCounter.innerText = "X Wins: " + xWins + "\nO Wins: " + oWins
@@ -146,8 +145,8 @@ function resetGrid() {
         cells[i].style.background = ''
         cells[i].innerText = ''
     }
-    
-    moveArrayInitialize()
+
+    moveArray = ['', '', '', '', '', '', '', '', '']
     currentPlayer = 'X'
     gameInProgress = true
     moveCounter = 0
@@ -165,33 +164,26 @@ function randomButton() {
 
 
 function randomMove() {
+    let cpuRandomMove = Math.floor(Math.random() * moveArray.length)
 
-
-
-
-    let cpuRandomMove = Math.floor(Math.random() * 9)
-    
     if (moveArray[cpuRandomMove] == '' && currentPlayer == "O" && gameInProgress == true) {
         cells[cpuRandomMove].innerText = "O"
-        moveArray[cpuRandomMove] == 'O'
-        winCheck()
+        moveArray[cpuRandomMove] = 'O'
+        console.log(cpuRandomMove)
 
 
 
     } else if (moveArray[cpuRandomMove] == '' && currentPlayer == "X" && gameInProgress == true) {
         cells[cpuRandomMove].innerText = "X"
-        moveArray[cpuRandomMove] == 'X'
+        moveArray[cpuRandomMove] = 'X'
+        console.log(cpuRandomMove)
 
-        winCheck()
     } else if (gameInProgress) {
-
+        console.log(cpuRandomMove)
         randomMove()
     }
 
-
+    winCheck()
 }
 
-function moveArrayInitialize() {
-    moveArray = ['', '', '', '', '', '', '', '', '']
-}
 
