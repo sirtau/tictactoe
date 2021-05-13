@@ -9,9 +9,9 @@ https://sirtau.github.io/tictactoe/
 ## How to Play
 You can either click on the board to place a move, or use the Random Move button to simulate AI gameplay.
 
-1 Player - Simply only click on the game board. 
-2 Players - Click Random Move in turn of either X or O. 
-0 Players - Keep clicking Random Turn for endless fun! 
+1 Player - Simply only click on the game board.  
+2 Players - Click Random Move in turn of either X or O.  
+0 Players - Keep clicking Random Turn for endless fun!  
 
 ## Planning
 I drew a simple 3x3 grid for reference, then wrote code based on what I wanted to do to make the game function.
